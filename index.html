@@ -1595,50 +1595,171 @@
         document.addEventListener('keydown', event => { if (event.key === 'Escape' && profileModal.classList.contains('show')) closeProfile(); });
 
 
-        // Interactive portfolio viewer: opens each portfolio page, with next/previous controls.
-        const portfolioSlides = [{"src": "portfolio-pages/slide-01.jpg", "title": "Sampul Portofolio", "desc": "Perkenalan visual Brandingin"}, {"src": "portfolio-pages/slide-02.jpg", "title": "Tentang Brandingin", "desc": "Cerita singkat dan brand yang pernah ditangani"}, {"src": "portfolio-pages/slide-03.jpg", "title": "Creative Tools", "desc": "Tools yang dipakai untuk proses kreatif"}, {"src": "portfolio-pages/slide-04.jpg", "title": "Our Team", "desc": "Kenalan dengan orang-orang di balik Brandingin"}, {"src": "portfolio-pages/slide-05.jpg", "title": "Nur Liany", "desc": "Creative concepting dan content planning"}, {"src": "portfolio-pages/slide-06.jpg", "title": "Yose Aprian", "desc": "Strategi konten dan pengelolaan media sosial"}, {"src": "portfolio-pages/slide-07.jpg", "title": "Abyan Dzakwan", "desc": "Website development dan content strategy"}, {"src": "portfolio-pages/slide-08.jpg", "title": "Mika Medi Ariansyah", "desc": "Partnership dan kolaborasi"}, {"src": "portfolio-pages/slide-09.jpg", "title": "Sinta Andriani", "desc": "Social media dan content editing"}, {"src": "portfolio-pages/slide-10.jpg", "title": "Aura Aulia Rahma", "desc": "Graphic design dan content editing"}, {"src": "portfolio-pages/slide-11.jpg", "title": "Our Project", "desc": "Pilihan hasil kerja Brandingin"}, {"src": "portfolio-pages/slide-12.jpg", "title": "Cattybone Cat House", "desc": "Konten media sosial dan insight engagement"}, {"src": "portfolio-pages/slide-13.jpg", "title": "Project Video", "desc": "Contoh video dan konten pendek"}, {"src": "portfolio-pages/slide-14.jpg", "title": "Website Creation", "desc": "Contoh website dan tampilan digital"}, {"src": "portfolio-pages/slide-15.jpg", "title": "Website Creation", "desc": "Kumpulan hasil pembuatan website"}, {"src": "portfolio-pages/slide-16.jpg", "title": "Product Photo", "desc": "Foto produk dan visual produk"}, {"src": "portfolio-pages/slide-17.jpg", "title": "Feed & Poster Design", "desc": "Desain feed media sosial dan poster"}, {"src": "portfolio-pages/slide-18.jpg", "title": "Carousel Design", "desc": "Desain konten carousel edukatif"}, {"src": "portfolio-pages/slide-19.jpg", "title": "Product Feed Design", "desc": "Visual feed untuk promosi produk"}, {"src": "portfolio-pages/slide-20.jpg", "title": "Let’s Work With Us", "desc": "Informasi kontak Brandingin"}];
+
+        // Portfolio Viewer — gunakan src asli dari setiap kartu
         const portfolioViewer = document.getElementById('portfolioViewer');
         const portfolioViewerImage = document.getElementById('portfolioViewerImage');
         const portfolioViewerCount = document.getElementById('portfolioViewerCount');
         const portfolioViewerTitle = document.getElementById('portfolioViewerTitle');
         const portfolioViewerDesc = document.getElementById('portfolioViewerDesc');
         const portfolioViewerClose = document.getElementById('portfolioViewerClose');
+        const portfolioViewerPrev = document.getElementById('portfolioViewerPrev');
+        const portfolioViewerNext = document.getElementById('portfolioViewerNext');
+
+        // Ambil kartu yang sudah ada tanpa mengubah src gambar.
+        const portfolioCards = Array.from(
+            document.querySelectorAll('.portfolio-slide')
+        ).filter(card => card.querySelector('img'));
+
         let currentPortfolioSlide = 0;
-        let previousFocus = null;
-        const renderPortfolioSlide = (index) => {
-            currentPortfolioSlide = (index + portfolioSlides.length) % portfolioSlides.length;
-            const slide = portfolioSlides[currentPortfolioSlide];
+        let previousPortfolioFocus = null;
+
+        function getPortfolioData(card, index) {
+            const img = card.querySelector('img');
+
+            // getAttribute('src') mempertahankan path src asli dari HTML.
+            const originalSrc = img.getAttribute('src');
+
+            const titleElement = card.querySelector(
+                '.portfolio-slide-meta strong, figcaption strong, h3, h4'
+            );
+
+            const descElement = card.querySelector(
+                '.portfolio-slide-meta p, figcaption small, .portfolio-slide-meta span'
+            );
+
+            return {
+                src: originalSrc,
+                title: titleElement
+                    ? titleElement.textContent.trim()
+                    : img.alt || `Slide Portofolio ${index + 1}`,
+                desc: descElement
+                    ? descElement.textContent.trim()
+                    : ''
+            };
+        }
+
+        function renderPortfolioSlide(index) {
+            if (!portfolioCards.length) return;
+
+            currentPortfolioSlide =
+                (index + portfolioCards.length) % portfolioCards.length;
+
+            const card = portfolioCards[currentPortfolioSlide];
+            const slide = getPortfolioData(card, currentPortfolioSlide);
+
+            if (!slide.src) {
+                console.error('Gambar portofolio tidak memiliki src:', card);
+                return;
+            }
+
+            portfolioViewerImage.onerror = function () {
+                console.error(
+                    'Gambar gagal dimuat. Periksa file dan path berikut:',
+                    slide.src
+                );
+                portfolioViewerTitle.textContent = slide.title;
+                portfolioViewerDesc.textContent =
+                    'Gambar gagal dimuat. Periksa nama file dan lokasi gambar di GitHub.';
+            };
+
+            portfolioViewerImage.onload = function () {
+                portfolioViewerTitle.textContent = slide.title;
+                portfolioViewerDesc.textContent = slide.desc;
+            };
+
             portfolioViewerImage.src = slide.src;
-            portfolioViewerImage.alt = `Slide ${currentPortfolioSlide + 1} portofolio Brandingin: ${slide.title}`;
-            portfolioViewerCount.textContent = `${String(currentPortfolioSlide + 1).padStart(2, '0')} / ${portfolioSlides.length}`;
+            portfolioViewerImage.alt = slide.title;
+            portfolioViewerCount.textContent =
+                `${String(currentPortfolioSlide + 1).padStart(2, '0')} / ` +
+                `${String(portfolioCards.length).padStart(2, '0')}`;
+
             portfolioViewerTitle.textContent = slide.title;
             portfolioViewerDesc.textContent = slide.desc;
-        };
-        const openPortfolioSlide = (index, trigger) => {
-            previousFocus = trigger || document.activeElement;
+        }
+
+        function openPortfolioSlide(index, trigger) {
+            if (!portfolioCards.length || !portfolioViewer) return;
+
+            previousPortfolioFocus = trigger || document.activeElement;
             renderPortfolioSlide(index);
+
             portfolioViewer.classList.add('show');
             portfolioViewer.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
-            portfolioViewerClose.focus();
-        };
-        const closePortfolioViewer = () => {
+
+            if (portfolioViewerClose) portfolioViewerClose.focus();
+        }
+
+        function closePortfolioViewer() {
+            if (!portfolioViewer) return;
+
             portfolioViewer.classList.remove('show');
             portfolioViewer.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
-            if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
-        };
-        document.querySelectorAll('.portfolio-slide').forEach(card => card.addEventListener('click', () => openPortfolioSlide(Number(card.dataset.slide), card)));
-        document.getElementById('portfolioViewerPrev').addEventListener('click', () => renderPortfolioSlide(currentPortfolioSlide - 1));
-        document.getElementById('portfolioViewerNext').addEventListener('click', () => renderPortfolioSlide(currentPortfolioSlide + 1));
-        portfolioViewerClose.addEventListener('click', closePortfolioViewer);
-        portfolioViewer.addEventListener('click', event => { if (event.target === portfolioViewer) closePortfolioViewer(); });
-        document.addEventListener('keydown', event => {
-            if (!portfolioViewer.classList.contains('show')) return;
-            if (event.key === 'Escape') closePortfolioViewer();
-            if (event.key === 'ArrowLeft') renderPortfolioSlide(currentPortfolioSlide - 1);
-            if (event.key === 'ArrowRight') renderPortfolioSlide(currentPortfolioSlide + 1);
+
+            if (
+                previousPortfolioFocus &&
+                typeof previousPortfolioFocus.focus === 'function'
+            ) {
+                previousPortfolioFocus.focus();
+            }
+        }
+
+        // Buka gambar sesuai kartu yang diklik.
+        portfolioCards.forEach((card, index) => {
+            card.style.cursor = 'pointer';
+
+            card.addEventListener('click', function (event) {
+                if (event.target.closest('a, button')) return;
+                openPortfolioSlide(index, card);
+            });
         });
+
+        if (portfolioViewerPrev) {
+            portfolioViewerPrev.addEventListener('click', () => {
+                renderPortfolioSlide(currentPortfolioSlide - 1);
+            });
+        }
+
+        if (portfolioViewerNext) {
+            portfolioViewerNext.addEventListener('click', () => {
+                renderPortfolioSlide(currentPortfolioSlide + 1);
+            });
+        }
+
+        if (portfolioViewerClose) {
+            portfolioViewerClose.addEventListener(
+                'click',
+                closePortfolioViewer
+            );
+        }
+
+        if (portfolioViewer) {
+            portfolioViewer.addEventListener('click', event => {
+                if (event.target === portfolioViewer) {
+                    closePortfolioViewer();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', event => {
+            if (
+                !portfolioViewer ||
+                !portfolioViewer.classList.contains('show')
+            ) return;
+
+            if (event.key === 'Escape') closePortfolioViewer();
+
+            if (event.key === 'ArrowLeft') {
+                renderPortfolioSlide(currentPortfolioSlide - 1);
+            }
+
+            if (event.key === 'ArrowRight') {
+                renderPortfolioSlide(currentPortfolioSlide + 1);
+            }
+        });
+
 
         const chatbotToggler = document.getElementById('chatbotToggler');
         const chatPopup = document.getElementById('chatPopup');

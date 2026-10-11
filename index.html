@@ -1710,10 +1710,12 @@
         portfolioCards.forEach((card, index) => {
             card.style.cursor = 'pointer';
 
-            card.addEventListener('click', function (event) {
-                if (event.target.closest('a, button')) return;
-                openPortfolioSlide(index, card);
-            });
+         
+card.addEventListener('click', function (event) {
+    event.stopPropagation();
+    openPortfolioSlide(index, card);
+});
+
         });
 
         if (portfolioViewerPrev) {

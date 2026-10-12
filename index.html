@@ -1007,7 +1007,33 @@
         @media (max-width:560px) { .portfolio-gallery-grid { grid-template-columns:1fr; gap:.85rem; } .portfolio-slide-meta { min-height:70px; } .portfolio-slide-meta strong { font-size:.88rem; } .portfolio-gallery-footer { flex-direction:column; } .portfolio-gallery-footer .portfolio-cta { width:100%; } .portfolio-viewer { padding:4.5rem .6rem 1rem; gap:.25rem; } .portfolio-viewer-figure img { max-height:calc(100vh - 190px); border-radius:5px; } .portfolio-viewer-nav { width:38px;height:38px; top:auto; bottom:1.2rem; transform:none; } .portfolio-viewer-nav:hover { transform:scale(1.05); } .portfolio-viewer-prev { left:calc(50% - 48px); }.portfolio-viewer-next { right:calc(50% - 48px); } .portfolio-viewer-figure figcaption { padding-bottom:3.3rem; gap:.35rem .6rem; } .portfolio-viewer-close { top:.7rem;right:.7rem;width:40px;height:40px; } }
 
     </style>
-</head>
+<style>
+/* ===== Brandingin V2 Premium Upgrade ===== */
+.brand-v2-badge{
+  display:inline-flex;gap:.5rem;align-items:center;
+  background:#5c0018;color:#fff;padding:.55rem 1rem;
+  border-radius:999px;font-weight:700;font-size:.8rem;
+}
+.brand-v2-card{
+  background:#fff;border:1px solid #f0c9d1;
+  border-radius:24px;padding:2rem;
+  transition:.3s;box-shadow:0 15px 40px rgba(92,0,24,.06);
+}
+.brand-v2-card:hover{transform:translateY(-8px)}
+.brand-v2-grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+ gap:1.2rem;margin-top:2rem
+}
+.brand-v2-number{
+ font-size:2.4rem;font-weight:800;color:#5c0018
+}
+.case-study{
+ margin-top:3rem;background:#3b000f;color:#fff;
+ padding:3rem;border-radius:28px
+}
+.case-study span{color:#ffb3c1;font-weight:800}
+@media(max-width:700px){.case-study{padding:2rem}}
+</style></head>
 <body>
 
     <!-- Header / Navbar -->
@@ -1422,7 +1448,45 @@
         </div>
     </div>
 
-    <!-- Footer -->
+    
+<section class="reveal" style="max-width:1200px;margin:0 auto;padding:3rem 2rem">
+  <div style="text-align:center">
+    <span class="brand-v2-badge"><i class="fa-solid fa-sparkles"></i> Brandingin Experience</span>
+    <h2 style="font-size:2.5rem;margin-top:1rem">Kami membangun <span style="color:#5c0018">identitas digital</span>, bukan sekadar konten.</h2>
+    <p style="max-width:700px;margin:auto;color:#6b5c5f">
+      Strategi, desain, website, dan konten dibuat agar brand kamu mudah dikenali dan dipercaya.
+    </p>
+  </div>
+
+  <div class="brand-v2-grid">
+    <div class="brand-v2-card">
+      <div class="brand-v2-number">01</div>
+      <h3>Think</h3>
+      <p>Riset dan strategi sebelum membuat visual.</p>
+    </div>
+    <div class="brand-v2-card">
+      <div class="brand-v2-number">02</div>
+      <h3>Create</h3>
+      <p>Menciptakan desain yang punya karakter.</p>
+    </div>
+    <div class="brand-v2-card">
+      <div class="brand-v2-number">03</div>
+      <h3>Grow</h3>
+      <p>Membantu bisnis berkembang melalui digital.</p>
+    </div>
+  </div>
+
+  <div class="case-study">
+    <span>OUR APPROACH</span>
+    <h2 style="margin:.7rem 0">Dari ide → identitas → pertumbuhan</h2>
+    <p>
+      Brandingin membantu bisnis tampil profesional melalui kombinasi kreativitas,
+      teknologi, dan strategi komunikasi digital.
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-brand">

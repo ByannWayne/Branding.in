@@ -935,6 +935,44 @@
         .service-visual-card img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; z-index:-2; transition:transform .7s ease; }.service-visual-card::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(25,0,8,.03) 5%,rgba(25,0,8,.88) 100%); z-index:-1; }.service-visual-card:hover img { transform:scale(1.07); }
         .service-visual-overlay { position:absolute; left:0; right:0; bottom:0; padding:1.6rem; color:#fff; }.service-visual-overlay span { font-size:.68rem; letter-spacing:.14em; font-weight:800; color:#f4bdca; }.service-visual-overlay h3 { font-size:1.45rem; line-height:1.2; margin:.6rem 0; letter-spacing:-.03em; }.service-visual-overlay p { font-size:.87rem; color:#f7e8eb; max-width:330px; line-height:1.7; }.service-visual-overlay a { display:grid; place-items:center; position:absolute; right:1.4rem; top:1.3rem; width:38px; height:38px; border-radius:50%; color:var(--primary); background:#fff; text-decoration:none; transition:transform .25s; }.service-visual-overlay a:hover { transform:rotate(45deg); }
         .package-card:hover { transform:translateY(-8px); box-shadow:0 22px 50px rgba(92,0,24,.11); }
+        /* Exclusive package styling */
+        .package-card.bronze {
+            border-top: 5px solid #9a5b2a;
+            background: linear-gradient(180deg,#fffaf6,#ffffff 45%);
+        }
+        .package-card.silver {
+            border-top: 5px solid #a7a9ac;
+            background: linear-gradient(180deg,#f8fafc,#ffffff 45%);
+        }
+        .package-card.gold {
+            border: 2px solid #d4af37;
+            border-top: 7px solid #d4af37;
+            background: linear-gradient(145deg,#fffdf5,#fff7d6);
+            box-shadow:0 25px 60px rgba(212,175,55,.28);
+            transform:translateY(-8px);
+        }
+        .package-card.gold:hover { transform:translateY(-14px); }
+        .package-card.gold::before {
+            content:'MOST EXCLUSIVE';
+            position:absolute;
+            top:-16px;
+            left:50%;
+            transform:translateX(-50%);
+            background:linear-gradient(135deg,#d4af37,#9a7410);
+            color:#fff;
+            padding:.35rem 1.2rem;
+            border-radius:999px;
+            font-size:.72rem;
+            font-weight:800;
+            letter-spacing:.08em;
+        }
+        .package-card.gold .package-price, .package-card.gold .package-title { color:#b8860b; }
+        .package-card.silver .package-price, .package-card.silver .package-title { color:#667085; }
+        .package-card.bronze .package-price, .package-card.bronze .package-title { color:#9a5b2a; }
+        .package-card.gold .btn-package { background:linear-gradient(135deg,#d4af37,#b8860b); color:white; box-shadow:0 8px 20px rgba(212,175,55,.35); }
+        .package-card.silver .btn-package { background:linear-gradient(135deg,#d8dde3,#8b8f94); color:white; }
+        .package-card.bronze .btn-package { background:linear-gradient(135deg,#c47a3a,#8b4513); color:white; }
+
         .brands-section { overflow:hidden; }
         .team-card { box-shadow:0 12px 35px rgba(92,0,24,.035); }.team-photo-container img { transition:transform .5s; }.team-card:hover .team-photo-container img { transform:scale(1.08); }
         .reveal { opacity:0; transform:translateY(22px); transition:opacity .65s ease, transform .65s ease; }.reveal.is-visible { opacity:1; transform:translateY(0); }
@@ -967,12 +1005,17 @@
 
 
         /* Full portfolio gallery: separate from the team profile cards */
+        /* Portfolio cover layout */
+        .portfolio-cover { width:100%; margin-bottom:2rem; border-radius:24px; overflow:hidden; box-shadow:0 20px 45px rgba(59,0,15,.12); cursor:pointer; border:1px solid var(--border); }
+        .portfolio-cover img { display:block; width:100%; height:420px; object-fit:cover; }
         .portfolio-gallery-section { max-width:1280px; }
         .portfolio-gallery-section .section-header { max-width:760px; margin:0 auto 2.4rem; }
         .portfolio-gallery-section .section-header p { max-width:700px; margin:0 auto; }
         .portfolio-gallery-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.15rem; }
         .portfolio-slide { display:block; overflow:hidden; width:100%; padding:0; border:1px solid var(--border); border-radius:18px; background:#fff; color:var(--dark); text-align:left; cursor:pointer; box-shadow:0 12px 32px rgba(59,0,15,.055); transition:transform .25s, box-shadow .25s, border-color .25s; }
-        .portfolio-slide:hover { transform:translateY(-5px); box-shadow:0 20px 42px rgba(59,0,15,.13); border-color:#d9a0ad; }
+        .portfolio-gallery-grid .portfolio-slide:first-child .portfolio-slide-image { aspect-ratio: 21/7; }
+         .portfolio-gallery-grid .portfolio-slide:first-child .portfolio-slide-meta { padding:1.1rem 1.4rem; }
+         .portfolio-slide:hover { transform:translateY(-6px); box-shadow:0 24px 55px rgba(59,0,15,.16); border-color:#d9a0ad; }
         .portfolio-slide:focus-visible { outline:3px solid #d98b9d; outline-offset:4px; }
         .portfolio-slide-image { display:block; position:relative; aspect-ratio:16/9; overflow:hidden; background:#f4e7ea; }
         .portfolio-slide-image::after { content:"Klik untuk memperbesar"; position:absolute; inset:auto 0 0; padding:1.7rem .85rem .7rem; color:#fff; font-size:.75rem; font-weight:700; opacity:0; background:linear-gradient(transparent,rgba(30,0,8,.75)); transition:opacity .25s; }
@@ -1003,37 +1046,11 @@
         .portfolio-viewer-nav { top:50%; transform:translateY(-50%); }
         .portfolio-viewer-nav:hover { transform:translateY(-50%) scale(1.05); }
         .portfolio-viewer-prev { left:1.25rem; }.portfolio-viewer-next { right:1.25rem; }
-        @media (max-width:900px) { .portfolio-gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.9rem; } .portfolio-viewer { padding:5rem 3.5rem 1.5rem; } }
-        @media (max-width:560px) { .portfolio-gallery-grid { grid-template-columns:1fr; gap:.85rem; } .portfolio-slide-meta { min-height:70px; } .portfolio-slide-meta strong { font-size:.88rem; } .portfolio-gallery-footer { flex-direction:column; } .portfolio-gallery-footer .portfolio-cta { width:100%; } .portfolio-viewer { padding:4.5rem .6rem 1rem; gap:.25rem; } .portfolio-viewer-figure img { max-height:calc(100vh - 190px); border-radius:5px; } .portfolio-viewer-nav { width:38px;height:38px; top:auto; bottom:1.2rem; transform:none; } .portfolio-viewer-nav:hover { transform:scale(1.05); } .portfolio-viewer-prev { left:calc(50% - 48px); }.portfolio-viewer-next { right:calc(50% - 48px); } .portfolio-viewer-figure figcaption { padding-bottom:3.3rem; gap:.35rem .6rem; } .portfolio-viewer-close { top:.7rem;right:.7rem;width:40px;height:40px; } }
+        @media (max-width:900px) { .portfolio-gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.9rem; } .portfolio-gallery-grid .portfolio-slide:first-child { grid-column:1 / -1; } .portfolio-viewer { padding:5rem 3.5rem 1.5rem; } }
+        @media (max-width:560px) { .portfolio-gallery-grid { grid-template-columns:1fr; gap:.85rem; } .portfolio-gallery-grid .portfolio-slide:first-child .portfolio-slide-image { aspect-ratio:16/9; } .portfolio-slide-meta { min-height:70px; } .portfolio-slide-meta strong { font-size:.88rem; } .portfolio-gallery-footer { flex-direction:column; } .portfolio-gallery-footer .portfolio-cta { width:100%; } .portfolio-viewer { padding:4.5rem .6rem 1rem; gap:.25rem; } .portfolio-viewer-figure img { max-height:calc(100vh - 190px); border-radius:5px; } .portfolio-viewer-nav { width:38px;height:38px; top:auto; bottom:1.2rem; transform:none; } .portfolio-viewer-nav:hover { transform:scale(1.05); } .portfolio-viewer-prev { left:calc(50% - 48px); }.portfolio-viewer-next { right:calc(50% - 48px); } .portfolio-viewer-figure figcaption { padding-bottom:3.3rem; gap:.35rem .6rem; } .portfolio-viewer-close { top:.7rem;right:.7rem;width:40px;height:40px; } }
 
     </style>
-<style>
-/* ===== Brandingin V2 Premium Upgrade ===== */
-.brand-v2-badge{
-  display:inline-flex;gap:.5rem;align-items:center;
-  background:#5c0018;color:#fff;padding:.55rem 1rem;
-  border-radius:999px;font-weight:700;font-size:.8rem;
-}
-.brand-v2-card{
-  background:#fff;border:1px solid #f0c9d1;
-  border-radius:24px;padding:2rem;
-  transition:.3s;box-shadow:0 15px 40px rgba(92,0,24,.06);
-}
-.brand-v2-card:hover{transform:translateY(-8px)}
-.brand-v2-grid{
- display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
- gap:1.2rem;margin-top:2rem
-}
-.brand-v2-number{
- font-size:2.4rem;font-weight:800;color:#5c0018
-}
-.case-study{
- margin-top:3rem;background:#3b000f;color:#fff;
- padding:3rem;border-radius:28px
-}
-.case-study span{color:#ffb3c1;font-weight:800}
-@media(max-width:700px){.case-study{padding:2rem}}
-</style></head>
+</head>
 <body>
 
     <!-- Header / Navbar -->
@@ -1065,7 +1082,7 @@
             <div class="hero-proof"><div class="proof-avatars"><span>B</span><span>D</span><span>+</span></div><div><strong>Ide kreatif, eksekusi terarah</strong><small>Untuk brand yang ingin naik level</small></div></div>
         </div>
         <div class="hero-visual reveal" aria-label="Kolase visual kreativitas digital dan pembuatan website">
-            <div class="hero-photo hero-photo-main"><img src="slide-12.jpg" alt="Moodboard desain dan branding kreatif"><span class="photo-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Creative direction</span></div>
+            <div class="hero-photo hero-photo-main"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1000&q=85" alt="Moodboard desain dan branding kreatif"><span class="photo-tag"><i class="fa-solid fa-wand-magic-sparkles"></i> Creative direction</span></div>
             <div class="hero-photo hero-photo-small"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=85" alt="Dashboard analitik digital di laptop"></div>
             <div class="hero-floating-card"><span class="floating-icon"><i class="fa-solid fa-chart-line"></i></span><div><strong>Built to grow</strong><small>Strategi + kreativitas</small></div><span class="floating-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></span></div>
             <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
@@ -1076,16 +1093,6 @@
         <div><strong>01</strong><span>Strategi yang terarah</span></div><div><strong>02</strong><span>Visual yang konsisten</span></div><div><strong>03</strong><span>Website responsif</span></div><div><strong>04</strong><span>Laporan yang jelas</span></div>
     </div>
 
-    <!-- Visual Services -->
-    <section class="service-showcase" id="what-we-do">
-        <div class="section-header reveal"><span class="section-kicker">APA YANG KAMI KERJAKAN</span><h2>Dari ide jadi <span class="heading-accent">pengalaman digital.</span></h2><p>Semua yang brand kamu butuhkan untuk tampil lebih konsisten di dunia digital.</p></div>
-        <div class="service-visual-grid">
-            <article class="service-visual-card service-social reveal"><img src="slide-12.jpg" alt="Konten media sosial dan perangkat digital" loading="lazy"><div class="service-visual-overlay"><span>01 / SOCIAL MEDIA</span><h3>Konten yang punya karakter.</h3><p>Strategi konten, desain kreatif, caption, dan pengelolaan media sosial.</p><a href="#services" aria-label="Lihat paket social media"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></article>
-            <article class="service-visual-card service-web reveal"><img src="slide-14.jpg" alt="Tampilan desain website di layar laptop" loading="lazy"><div class="service-visual-overlay"><span>02 / WEB CREATION</span><h3>Website yang terasa profesional.</h3><p>Landing page dan company profile yang responsif, jelas, dan mudah digunakan.</p><a href="#services" aria-label="Lihat paket website"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></article>
-            <article class="service-visual-card service-brand reveal"><img src="https://images.unsplash.com/photo-1634942536790-2536e3e9e4a2?auto=format&fit=crop&w=900&q=85" alt="Perangkat dan material identitas visual brand" loading="lazy"><div class="service-visual-overlay"><span>03 / BRAND IDENTITY</span><h3>Identitas yang mudah diingat.</h3><p>Arah visual, warna, dan elemen brand yang lebih konsisten.</p><a href="#services" aria-label="Lihat paket branding"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></article>
-        </div>
-    </section>
-
     <!-- Services / Packages Section -->
     <section id="services">
         <div class="section-header">
@@ -1095,9 +1102,9 @@
 
         <div class="packages-grid">
             <!-- Paket Basic -->
-            <div class="package-card">
+            <div class="package-card bronze">
                 <div>
-                    <h3 class="package-title">Paket Basic</h3>
+                    <h3 class="package-title">Paket Bronze</h3>
                     <div class="package-price">Rp 400.000</div>
                     <ul class="package-features">
                         <li><i class="fa-solid fa-check"></i> 4 Konten (Feed / Reels)</li>
@@ -1108,13 +1115,13 @@
                         <li><i class="fa-solid fa-times" style="color:#ef4444;"></i> Desain Logo & Branding</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Basic" target="_blank" rel="noopener noreferrer" class="btn-package">Pilih Paket Basic</a>
+                <a href="https://wa.me/6289673966538?text=HALO%20ADMIN%20BRANDING.in%20Aku%20tertarik%20nih%20sama%20penawaran%20yang%20ada%20di%20Paket%20Bronze" target="_blank" rel="noopener noreferrer" class="btn-package">Pilih Paket Bronze</a>
             </div>
 
             <!-- Paket Medium -->
-            <div class="package-card">
+            <div class="package-card silver">
                 <div>
-                    <h3 class="package-title">Paket Medium</h3>
+                    <h3 class="package-title">Paket Silver</h3>
                     <div class="package-price">Rp 600.000</div>
                     <ul class="package-features">
                         <li><i class="fa-solid fa-check"></i> 4 Reels & 4 Feed Photos</li>
@@ -1125,12 +1132,11 @@
                         <li><i class="fa-solid fa-times" style="color:#ef4444;"></i> Desain Logo & Branding</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Medium" target="_blank" rel="noopener noreferrer" class="btn-package">Pilih Paket Medium</a>
+                <a href="https://wa.me/6289673966538?text=HALO%20ADMIN%20BRANDING.in%20Aku%20tertarik%20nih%20sama%20penawaran%20yang%20ada%20di%20Paket%20Silver" target="_blank" rel="noopener noreferrer" class="btn-package">Pilih Paket Silver</a>
             </div>
 
             <!-- Paket Gold -->
-            <div class="package-card featured">
-                <div class="popular-badge">Best Value</div>
+            <div class="package-card featured gold">
                 <div>
                     <h3 class="package-title">Paket Gold</h3>
                     <div class="package-price">Rp 1.200.000</div>
@@ -1142,7 +1148,7 @@
                         <li><i class="fa-solid fa-check"></i> Copywriting, Caption & Free Request Edit</li>
                     </ul>
                 </div>
-                <a href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20Paket%20Gold" target="_blank" rel="noopener noreferrer" class="btn-package">Pilih Paket Gold</a>
+                <a href="https://wa.me/6289673966538?text=HALO%20ADMIN%20BRANDING.in%20Aku%20tertarik%20nih%20sama%20penawaran%20yang%20ada%20di%20Paket%20Gold" target="_blank" rel="noopener noreferrer" class="btn-package">Pilih Paket Gold</a>
             </div>
         </div>
 
@@ -1287,14 +1293,14 @@
     <section id="portfolio" class="portfolio-gallery-section">
         <div class="section-header reveal">
             <span class="section-kicker">HASIL KARYA KAMI</span>
-            <h2>Portofolio yang Bisa Kamu Lihat Langsung</h2>
-            <p>Ini beberapa bukti proses dan hasil kerja Brandingin—mulai dari konten media sosial, video, desain, sampai website. Klik salah satu gambar untuk melihat lebih jelas.</p>
+            <h2>Portofolio Brandingin</h2>
+            <p>Lihat beberapa hasil proses dan karya yang pernah kami buat.</p>
         </div>
+        <button class="portfolio-cover reveal portfolio-slide" type="button" data-slide="0" aria-label="Buka slide 1: Sampul Portofolio">
+            <img src="slide-01.jpg" loading="lazy" alt="Slide 1 portofolio Brandingin: Sampul Portofolio">
+        </button>
         <div class="portfolio-gallery-grid">
-            <button class="portfolio-slide reveal" type="button" data-slide="1" aria-label="Buka slide 1: Sampul Portofolio">
-                <span class="portfolio-slide-image"><img src="slide-01.jpg" loading="lazy" alt="Slide 1 portofolio Brandingin: Sampul Portofolio"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">01</span><span><strong>Sampul Portofolio</strong><small>Perkenalan visual Brandingin</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
-            </button>
+
             <button class="portfolio-slide reveal" type="button" data-slide="2" aria-label="Buka slide 2: Tentang Brandingin">
                 <span class="portfolio-slide-image"><img src="slide-02.jpg" loading="lazy" alt="Slide 2 portofolio Brandingin: Tentang Brandingin"></span>
                 <span class="portfolio-slide-meta"><span class="portfolio-slide-number">02</span><span><strong>Tentang Brandingin</strong><small>Cerita singkat dan brand yang pernah ditangani</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
@@ -1337,13 +1343,16 @@
                 <span class="portfolio-slide-meta"><span class="portfolio-slide-number">11</span><span><strong>Product Feed Design</strong><small>Visual feed untuk promosi produk</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
             </button>
         </div>
+        </div>
         <div class="portfolio-gallery-footer reveal">
             <p>Mau lihat versi asli atau menjelajahi portofolio dari Canva?</p>
             <a class="portfolio-cta" href="https://canva.link/mw6zopv8xwyvg0q" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Buka Portofolio di Canva</a>
         </div>
     </section>
 
-    <!-- Portfolio slide viewer -->
+        </section>
+
+<!-- Portfolio slide viewer -->
     <div class="portfolio-viewer" id="portfolioViewer" role="dialog" aria-modal="true" aria-label="Tampilan slide portofolio" aria-hidden="true">
         <button class="portfolio-viewer-close" id="portfolioViewerClose" type="button" aria-label="Tutup portofolio"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
         <button class="portfolio-viewer-nav portfolio-viewer-prev" id="portfolioViewerPrev" type="button" aria-label="Slide sebelumnya"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
@@ -1448,45 +1457,7 @@
         </div>
     </div>
 
-    
-<section class="reveal" style="max-width:1200px;margin:0 auto;padding:3rem 2rem">
-  <div style="text-align:center">
-    <span class="brand-v2-badge"><i class="fa-solid fa-sparkles"></i> Brandingin Experience</span>
-    <h2 style="font-size:2.5rem;margin-top:1rem">Kami membangun <span style="color:#5c0018">identitas digital</span>, bukan sekadar konten.</h2>
-    <p style="max-width:700px;margin:auto;color:#6b5c5f">
-      Strategi, desain, website, dan konten dibuat agar brand kamu mudah dikenali dan dipercaya.
-    </p>
-  </div>
-
-  <div class="brand-v2-grid">
-    <div class="brand-v2-card">
-      <div class="brand-v2-number">01</div>
-      <h3>Think</h3>
-      <p>Riset dan strategi sebelum membuat visual.</p>
-    </div>
-    <div class="brand-v2-card">
-      <div class="brand-v2-number">02</div>
-      <h3>Create</h3>
-      <p>Menciptakan desain yang punya karakter.</p>
-    </div>
-    <div class="brand-v2-card">
-      <div class="brand-v2-number">03</div>
-      <h3>Grow</h3>
-      <p>Membantu bisnis berkembang melalui digital.</p>
-    </div>
-  </div>
-
-  <div class="case-study">
-    <span>OUR APPROACH</span>
-    <h2 style="margin:.7rem 0">Dari ide → identitas → pertumbuhan</h2>
-    <p>
-      Brandingin membantu bisnis tampil profesional melalui kombinasi kreativitas,
-      teknologi, dan strategi komunikasi digital.
-    </p>
-  </div>
-</section>
-
-<!-- Footer -->
+    <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-brand">

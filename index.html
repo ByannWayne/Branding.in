@@ -866,6 +866,171 @@
                 width: 105px;
                 height: 105px;
             }
+            /* Styling Utama Tampilan Sesuai Sketsa */
+.portfolio-gallery-section {
+    position: relative;
+    background: linear-gradient(135deg, rgba(92, 0, 24, 0.04), rgba(135, 0, 33, 0.04));
+    border-radius: 2rem;
+    padding: 3rem 2rem;
+    border: 1px solid var(--border);
+}
+
+/* Kotak Utama / Hero Banner Portofolio di Tengah */
+.portfolio-hero-showcase {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 480px;
+    margin: 0 auto 2rem;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(92, 0, 24, 0.2);
+    border: 2px solid var(--border);
+    background: #000;
+}
+
+.portfolio-hero-showcase img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-hero-showcase:hover img {
+    transform: scale(1.03);
+}
+
+/* Overlay Teks & Judul di dalam Banner Utama */
+.portfolio-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(59, 0, 15, 0.85) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.5rem;
+    color: white;
+}
+
+.portfolio-hero-overlay span {
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.15em;
+    color: #ffb3c1;
+    margin-bottom: 0.4rem;
+}
+
+.portfolio-hero-overlay h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-hero-overlay p {
+    font-size: 0.95rem;
+    color: #f7e8eb;
+    max-width: 600px;
+}
+
+/* Navigasi Panah Kiri & Kanan ala Sketsa Kamu */
+.portfolio-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.portfolio-nav-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.portfolio-prev-btn { left: -25px; }
+.portfolio-next-btn { right: -25px; }
+
+/* Grid Card Kecil di Depan/Bawah Banner */
+.portfolio-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.portfolio-slide {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    text-align: left;
+}
+
+.portfolio-slide:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 25px rgba(92,0,24,0.1);
+}
+
+.portfolio-slide-image {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    display: block;
+}
+
+.portfolio-slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.portfolio-slide-meta {
+    padding: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.portfolio-slide-number {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--primary);
+    background: var(--maroon-light);
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+}
+
+.portfolio-slide-meta strong {
+    font-size: 0.82rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media(max-width: 768px) {
+    .portfolio-hero-showcase { height: 350px; }
+    .portfolio-hero-overlay h3 { font-size: 1.5rem; }
+    .portfolio-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .portfolio-prev-btn { left: 10px; }
+    .portfolio-next-btn { right: 10px; }
+}
             .chat-popup {
                 width: calc(100vw - 20px);
                 right: 10px;
@@ -1257,73 +1422,119 @@
     </section>
 
 
-    <!-- Portfolio proof section: full deck shown on-site, separate from team profiles -->
+<!-- Portfolio proof section: full deck shown on-site, separate from team profiles -->
     <section id="portfolio" class="portfolio-gallery-section">
         <div class="section-header reveal">
             <span class="section-kicker">HASIL KARYA KAMI</span>
             <h2>Portofolio yang Bisa Kamu Lihat Langsung</h2>
             <p>Ini beberapa bukti proses dan hasil kerja Brandingin—mulai dari konten media sosial, video, desain, sampai website. Klik salah satu gambar untuk melihat lebih jelas.</p>
         </div>
-        <div class="portfolio-gallery-grid">
-            <button class="portfolio-slide reveal" type="button" data-slide="1" aria-label="Buka slide 1: Sampul Portofolio">
-                <span class="portfolio-slide-image"><img src="slide-01.jpg" loading="lazy" alt="Slide 1 portofolio Brandingin: Sampul Portofolio"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">01</span><span><strong>Sampul Portofolio</strong><small>Perkenalan visual Brandingin</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+
+        <!-- BANNER UTAMA DI TENGAH (Sesuai Sketsa) -->
+        <div class="portfolio-hero-showcase" id="portfolioHeroMain" style="position: relative; width: 100%; max-width: 900px; height: 480px; margin: 0 auto 2.5rem; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 50px rgba(92, 0, 24, 0.2); border: 2px solid var(--border); background: #000;">
+            <button class="portfolio-nav-btn portfolio-prev-btn" onclick="prevPortfolioSlide()" aria-label="Sebelumnya" style="position: absolute; top: 50%; left: 15px; transform: translateY(-50%); width: 45px; height: 45px; background: rgba(255,255,255,0.9); border: 1px solid var(--border); border-radius: 50%; display: grid; place-items: center; color: var(--primary); font-size: 1.1rem; cursor: pointer; z-index: 10; transition: all 0.2s;"><i class="fa-solid fa-chevron-left"></i></button>
+            
+            <img id="heroShowcaseImg" src="slide-01.jpg" alt="Sampul Portofolio Utama" style="width: 100%; height: 100%; object-fit: cover;">
+            <div class="portfolio-hero-overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(59, 0, 15, 0.88) 100%); display: flex; flex-direction: column; justify-content: flex-end; padding: 2.5rem; color: white;">
+                <span id="heroShowcaseNum" style="font-size: 0.8rem; font-weight: 800; letter-spacing: 0.15em; color: #ffb3c1; margin-bottom: 0.4rem;">01 / 11</span>
+                <h3 id="heroShowcaseTitle" style="font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem;">Sampul Portofolio</h3>
+                <p id="heroShowcaseDesc" style="font-size: 0.95rem; color: #f7e8eb;">Perkenalan visual Brandingin</p>
+            </div>
+
+            <button class="portfolio-nav-btn portfolio-next-btn" onclick="nextPortfolioSlide()" aria-label="Berikutnya" style="position: absolute; top: 50%; right: 15px; transform: translateY(-50%); width: 45px; height: 45px; background: rgba(255,255,255,0.9); border: 1px solid var(--border); border-radius: 50%; display: grid; place-items: center; color: var(--primary); font-size: 1.1rem; cursor: pointer; z-index: 10; transition: all 0.2s;"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+
+        <!-- SEMUA 11 CARD LENGKAP DI DEPAN / BAWAHNYA -->
+        <div class="portfolio-gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; max-width: 1100px; margin: 0 auto;">
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(0)" aria-label="Buka slide 1">
+                <span class="portfolio-slide-image"><img src="slide-01.jpg" loading="lazy" alt="Slide 1"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">01</span><span><strong>Sampul Portofolio</strong><small>Perkenalan visual</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="2" aria-label="Buka slide 2: Tentang Brandingin">
-                <span class="portfolio-slide-image"><img src="slide-02.jpg" loading="lazy" alt="Slide 2 portofolio Brandingin: Tentang Brandingin"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">02</span><span><strong>Tentang Brandingin</strong><small>Cerita singkat dan brand yang pernah ditangani</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(1)" aria-label="Buka slide 2">
+                <span class="portfolio-slide-image"><img src="slide-02.jpg" loading="lazy" alt="Slide 2"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">02</span><span><strong>Tentang Brandingin</strong><small>Cerita singkat</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="3" aria-label="Buka slide 3: Creative Tools">
-                <span class="portfolio-slide-image"><img src="slide-03.jpg" loading="lazy" alt="Slide 3 portofolio Brandingin: Creative Tools"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">03</span><span><strong>Creative Tools</strong><small>Tools yang dipakai untuk proses kreatif</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
-            </button>    
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(2)" aria-label="Buka slide 3">
+                <span class="portfolio-slide-image"><img src="slide-03.jpg" loading="lazy" alt="Slide 3"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">03</span><span><strong>Creative Tools</strong><small>Tools proses kreatif</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="4" aria-label="Buka slide 4: Social Media Management">
-                <span class="portfolio-slide-image"><img src="slide-12.jpg" loading="lazy" alt="Slide 4 portofolio Brandingin: Social Media Management"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">4</span><span><strong>Social Media Management </strong><small>Konten media sosial dan insight engagement</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(3)" aria-label="Buka slide 4">
+                <span class="portfolio-slide-image"><img src="slide-12.jpg" loading="lazy" alt="Slide 4"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">04</span><span><strong>Social Media</strong><small>Konten & engagement</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="5" aria-label="Buka slide 5: Project Video">
-                <span class="portfolio-slide-image"><img src="slide-13.jpg" loading="lazy" alt="Slide 5 portofolio Brandingin: Project Video"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">5</span><span><strong>Project Video</strong><small>Contoh video dan konten pendek</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(4)" aria-label="Buka slide 5">
+                <span class="portfolio-slide-image"><img src="slide-13.jpg" loading="lazy" alt="Slide 5"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">05</span><span><strong>Project Video</strong><small>Konten pendek</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="6" aria-label="Buka slide 6: Website Creation">
-                <span class="portfolio-slide-image"><img src="slide-14.jpg" loading="lazy" alt="Slide 6 portofolio Brandingin: Website Creation"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">6</span><span><strong>Website Creation</strong><small>Contoh website dan tampilan digital</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(5)" aria-label="Buka slide 6">
+                <span class="portfolio-slide-image"><img src="slide-14.jpg" loading="lazy" alt="Slide 6"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">06</span><span><strong>Website Creation</strong><small>Tampilan digital</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="7" aria-label="Buka slide 7: Website Creation">
-                <span class="portfolio-slide-image"><img src="slide-15.jpg" loading="lazy" alt="Slide 7 portofolio Brandingin: Website Creation"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">7</span><span><strong>Website Creation</strong><small>Kumpulan hasil pembuatan website</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(6)" aria-label="Buka slide 7">
+                <span class="portfolio-slide-image"><img src="slide-15.jpg" loading="lazy" alt="Slide 7"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">07</span><span><strong>Website Creation</strong><small>Hasil website</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="8" aria-label="Buka slide 8: Product Photo">
-                <span class="portfolio-slide-image"><img src="slide-16.jpg" loading="lazy" alt="Slide 8 portofolio Brandingin: Product Photo"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">8</span><span><strong>Product Photo</strong><small>Foto produk dan visual produk</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(7)" aria-label="Buka slide 8">
+                <span class="portfolio-slide-image"><img src="slide-16.jpg" loading="lazy" alt="Slide 8"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">08</span><span><strong>Product Photo</strong><small>Visual produk</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="9" aria-label="Buka slide 9: Feed &amp; Poster Design">
-                <span class="portfolio-slide-image"><img src="slide-17.jpg" loading="lazy" alt="Slide 9 portofolio Brandingin: Feed &amp; Poster Design"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">9</span><span><strong>Feed &amp; Poster Design</strong><small>Desain feed media sosial dan poster</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(8)" aria-label="Buka slide 9">
+                <span class="portfolio-slide-image"><img src="slide-17.jpg" loading="lazy" alt="Slide 9"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">09</span><span><strong>Feed & Poster</strong><small>Desain poster</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="10" aria-label="Buka slide 10: Carousel Design">
-                <span class="portfolio-slide-image"><img src="slide-18.jpg" loading="lazy" alt="Slide 10 portofolio Brandingin: Carousel Design"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">10</span><span><strong>Carousel Design</strong><small>Desain konten carousel edukatif</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(9)" aria-label="Buka slide 10">
+                <span class="portfolio-slide-image"><img src="slide-18.jpg" loading="lazy" alt="Slide 10"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">10</span><span><strong>Carousel Design</strong><small>Desain edukatif</small></span></span>
             </button>
-            <button class="portfolio-slide reveal" type="button" data-slide="11" aria-label="Buka slide 11: Product Feed Design">
-                <span class="portfolio-slide-image"><img src="slide-19.jpg" loading="lazy" alt="Slide 11 portofolio Brandingin: Product Feed Design"></span>
-                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">11</span><span><strong>Product Feed Design</strong><small>Visual feed untuk promosi produk</small></span><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></span>
+            <button class="portfolio-slide reveal" type="button" onclick="setPortfolioHero(10)" aria-label="Buka slide 11">
+                <span class="portfolio-slide-image"><img src="slide-19.jpg" loading="lazy" alt="Slide 11"></span>
+                <span class="portfolio-slide-meta"><span class="portfolio-slide-number">11</span><span><strong>Product Feed</strong><small>Promosi produk</small></span></span>
             </button>
         </div>
-        <div class="portfolio-gallery-footer reveal">
+
+        <div class="portfolio-gallery-footer reveal" style="margin-top: 2.5rem; text-align: center;">
             <p>Mau lihat versi asli atau menjelajahi portofolio dari Canva?</p>
             <a class="portfolio-cta" href="https://canva.link/mw6zopv8xwyvg0q" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Buka Portofolio di Canva</a>
         </div>
     </section>
 
-    <!-- Portfolio slide viewer -->
-    <div class="portfolio-viewer" id="portfolioViewer" role="dialog" aria-modal="true" aria-label="Tampilan slide portofolio" aria-hidden="true">
-        <button class="portfolio-viewer-close" id="portfolioViewerClose" type="button" aria-label="Tutup portofolio"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
-        <button class="portfolio-viewer-nav portfolio-viewer-prev" id="portfolioViewerPrev" type="button" aria-label="Slide sebelumnya"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
-        <figure class="portfolio-viewer-figure"><img id="portfolioViewerImage" src="portfolio-pages/slide-01.jpg" alt="Slide portofolio Brandingin"><figcaption><span id="portfolioViewerCount">01 / 20</span><strong id="portfolioViewerTitle">Sampul Portofolio</strong><small id="portfolioViewerDesc">Perkenalan visual Brandingin</small></figcaption></figure>
-        <button class="portfolio-viewer-nav portfolio-viewer-next" id="portfolioViewerNext" type="button" aria-label="Slide berikutnya"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
-    </div>
+    <!-- Script Kontrol Carousel Banner Utama -->
+    <script>
+        const allPortfolioSlides = [
+            { src: "slide-01.jpg", num: "01 / 11", title: "Sampul Portofolio", desc: "Perkenalan visual Brandingin" },
+            { src: "slide-02.jpg", num: "02 / 11", title: "Tentang Brandingin", desc: "Cerita singkat dan brand yang pernah ditangani" },
+            { src: "slide-03.jpg", num: "03 / 11", title: "Creative Tools", desc: "Tools yang dipakai untuk proses kreatif" },
+            { src: "slide-12.jpg", num: "04 / 11", title: "Social Media Management", desc: "Konten media sosial dan insight engagement" },
+            { src: "slide-13.jpg", num: "05 / 11", title: "Project Video", desc: "Contoh video dan konten pendek" },
+            { src: "slide-14.jpg", num: "06 / 11", title: "Website Creation", desc: "Contoh website dan tampilan digital" },
+            { src: "slide-15.jpg", num: "07 / 11", title: "Website Creation", desc: "Kumpulan hasil pembuatan website" },
+            { src: "slide-16.jpg", num: "08 / 11", title: "Product Photo", desc: "Foto produk dan visual produk" },
+            { src: "slide-17.jpg", num: "09 / 11", title: "Feed & Poster Design", desc: "Desain feed media sosial dan poster" },
+            { src: "slide-18.jpg", num: "10 / 11", title: "Carousel Design", desc: "Desain konten carousel edukatif" },
+            { src: "slide-19.jpg", num: "11 / 11", title: "Product Feed Design", desc: "Visual feed untuk promosi produk" }
+        ];
+
+        let currentHeroIdx = 0;
+
+        function setPortfolioHero(index) {
+            currentHeroIdx = index;
+            const data = allPortfolioSlides[currentHeroIdx];
+            document.getElementById('heroShowcaseImg').src = data.src;
+            document.getElementById('heroShowcaseNum').textContent = data.num;
+            document.getElementById('heroShowcaseTitle').textContent = data.title;
+            document.getElementById('heroShowcaseDesc').textContent = data.desc;
+        }
+
+        function nextPortfolioSlide() {
+            currentHeroIdx = (currentHeroIdx + 1) % allPortfolioSlides.length;
+            setPortfolioHero(currentHeroIdx);
+        }
+
+        function prevPortfolioSlide() {
+            currentHeroIdx = (currentHeroIdx - 1 + allPortfolioSlides.length) % allPortfolioSlides.length;
+            setPortfolioHero(currentHeroIdx);
+        }
+    </script>
 
     <!-- Team Section (6 Members with Photos) -->
     <section id="team" style="background: white; border-radius: 2rem; border: 1px solid var(--border);">
